@@ -3,10 +3,12 @@ package com.heverton.dscommerce.controller;
 import com.heverton.dscommerce.dto.ProductDTO;
 import com.heverton.dscommerce.entities.Product;
 import com.heverton.dscommerce.services.ProductService;
+import com.heverton.dscommerce.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,7 +25,7 @@ public class ProductController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id){
-        ProductDTO dto = service.findByd(id);
+        ProductDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);
     }
 
